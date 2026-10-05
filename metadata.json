@@ -1,0 +1,6 @@
+{
+  "name": "The Roofers Desk — Roofing Insurance Infrastructure & Estimating",
+  "description": "Oklahoma City-based insurance supplements, Xactimate estimates, re-inspections, and financial tracking for roofing contractors nationwide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
