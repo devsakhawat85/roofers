@@ -22,42 +22,50 @@ export default function App() {
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [activeToast, setActiveToast] = useState<string | null>(null);
 
-  // Sync with browser URL hash for true multi-page URL navigation and back/forward history
+  // Sync with browser URL (both pathname and hash) for true multi-page URL navigation
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '').trim();
-      if (!hash) {
-        setCurrentPage('home');
+    const validPages: PageId[] = [
+      'home',
+      'about',
+      'services',
+      'service-supplements',
+      'service-estimates',
+      'service-reinspections',
+      'service-analytics',
+      'service-training',
+      'projects',
+      'reviews',
+      'faq',
+      'calculator',
+      'portal',
+      'contact'
+    ];
+
+    const resolvePageFromLocation = () => {
+      // 1. Check hash first (e.g. #about)
+      const hash = window.location.hash.replace(/^#\/?/, '').trim();
+      if (hash && validPages.includes(hash as PageId)) {
+        setCurrentPage(hash as PageId);
         return;
       }
-      
-      const validPages: PageId[] = [
-        'home',
-        'about',
-        'services',
-        'service-supplements',
-        'service-estimates',
-        'service-reinspections',
-        'service-analytics',
-        'service-training',
-        'projects',
-        'reviews',
-        'faq',
-        'calculator',
-        'portal',
-        'contact'
-      ];
 
-      if (validPages.includes(hash as PageId)) {
-        setCurrentPage(hash as PageId);
-      } else {
-        setCurrentPage('home');
+      // 2. Check path (e.g. /about or /services)
+      const path = window.location.pathname.replace(/^\/|\/$/g, '').trim();
+      if (path && validPages.includes(path as PageId)) {
+        setCurrentPage(path as PageId);
+        return;
       }
+
+      setCurrentPage('home');
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    resolvePageFromLocation();
+    window.addEventListener('hashchange', resolvePageFromLocation);
+    window.addEventListener('popstate', resolvePageFromLocation);
+    return () => {
+      window.removeEventListener('hashchange', resolvePageFromLocation);
+      window.removeEventListener('popstate', resolvePageFromLocation);
+    };
   }, []);
 
   const navigateTo = (page: PageId) => {

@@ -1,6 +1,11 @@
 import { ServiceItem, CaseStudy, Testimonial, FaqItem } from '../types';
 import rdLogo from '../assets/images/rd_logo_trimmed.png';
 import rdLogoJpg from '../assets/images/rd_logo.jpg';
+import heroImg from '../assets/images/hero_roofing_storm_inspection_1791184250529.jpg';
+import commercialImg from '../assets/images/commercial_flat_roof_tpo_1791184274609.jpg';
+import hailDetailImg from '../assets/images/roof_inspection_hail_damage_1791184290855.jpg';
+import estimatingDeskImg from '../assets/images/contractor_estimating_desk_1791184314542.jpg';
+import residentialLuxuryImg from '../assets/images/residential_luxury_roof_1791184324695.jpg';
 
 export const COMPANY_INFO = {
   name: 'The Roofers Desk',
@@ -32,11 +37,11 @@ export const COMPANY_INFO = {
 };
 
 export const IMAGES = {
-  hero: '/src/assets/images/hero_roofing_storm_inspection_1791184250529.jpg',
-  commercial: '/src/assets/images/commercial_flat_roof_tpo_1791184274609.jpg',
-  hailDetail: '/src/assets/images/roof_inspection_hail_damage_1791184290855.jpg',
-  estimatingDesk: '/src/assets/images/contractor_estimating_desk_1791184314542.jpg',
-  residentialLuxury: '/src/assets/images/residential_luxury_roof_1791184324695.jpg',
+  hero: heroImg,
+  commercial: commercialImg,
+  hailDetail: hailDetailImg,
+  estimatingDesk: estimatingDeskImg,
+  residentialLuxury: residentialLuxuryImg,
 };
 
 export const SERVICES: ServiceItem[] = [
